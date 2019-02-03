@@ -143,7 +143,7 @@ class QuadrillageMap extends Component {
                 d={ geoPath().projection(this.projection())(d) }
                 stroke="white"
                 stroke-width='0.5'
-                fill={ `rgba(255,0,0,${0.05 + this.state.worldData[i].properties.tree_count / 50000})` }
+                fill={ `rgba(255,0,0,${0.05 + this.state.worldData[i].properties.tree_count / 30000})` }
                 onClick={ () => this.handleCountryClick(i) }
               />
             ))
