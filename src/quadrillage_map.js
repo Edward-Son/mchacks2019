@@ -98,6 +98,7 @@
 import React, { Component } from "react"
 import { geoMercator, geoPath } from "d3-geo"
 import { feature } from "topojson-client"
+import { polygonContains } from 
 
 class QuadrillageMap extends Component {
     constructor() {
@@ -116,6 +117,15 @@ class QuadrillageMap extends Component {
   handleCountryClick(countryIndex) {
     console.log("Clicked on a country: ", this.state.worldData[countryIndex])
   }
+
+  handleEnterCountry(countryIndex){
+
+  }
+
+  handleLeaveCountry(countryIndex){
+
+  }
+  
   componentDidMount() {
     fetch("https://raw.githubusercontent.com/Edward-Son/mchacks2019/master/src/quadrillage-smol.json")
       .then(response => {
@@ -144,6 +154,8 @@ class QuadrillageMap extends Component {
                 stroke-width='0.5'
                 fill={ `rgba(38,50,56,${1 / this.state.worldData.length * i})` }
                 onClick={ () => this.handleCountryClick(i) }
+                onMouseEnter={() => this.handleEnterCountry(i)}
+                onMouseLeave={() => this.handleLeaveCountry(i)}
               />
             ))
           }
