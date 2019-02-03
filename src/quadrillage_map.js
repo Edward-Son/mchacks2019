@@ -117,7 +117,7 @@ class QuadrillageMap extends Component {
     console.log("Clicked on a country: ", this.state.worldData[countryIndex])
   }
   componentDidMount() {
-    fetch("https://raw.githubusercontent.com/Edward-Son/mchacks2019/master/src/world.json")
+    fetch("https://raw.githubusercontent.com/Edward-Son/mchacks2019/master/src/quadrillage-smol.json")
       .then(response => {
         if (response.status !== 200) {
           console.log(`There was a problem: ${response.status}`)
