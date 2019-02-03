@@ -98,7 +98,6 @@
 import React, { Component } from "react"
 import { geoMercator, geoPath } from "d3-geo"
 import { feature } from "topojson-client"
-import { polygonContains } from 
 
 class QuadrillageMap extends Component {
     constructor() {
@@ -115,19 +114,11 @@ class QuadrillageMap extends Component {
       .translate([ 800/2 , 450/2])
   }
   handleCountryClick(countryIndex) {
-    console.log("Clicked on a country: ", this.state.worldData[countryIndex])
+    console.log("Clicked on a country: ", this.state.worldData[countryIndex].properties.tree_count)
   }
 
-  handleEnterCountry(countryIndex){
-
-  }
-
-  handleLeaveCountry(countryIndex){
-
-  }
-  
   componentDidMount() {
-    fetch("https://raw.githubusercontent.com/Edward-Son/mchacks2019/master/src/quadrillage-smol.json")
+    fetch("https://raw.githubusercontent.com/Edward-Son/mchacks2019/master/src/sqrc_1000_trees.json")
       .then(response => {
         if (response.status !== 200) {
           console.log(`There was a problem: ${response.status}`)
@@ -135,7 +126,7 @@ class QuadrillageMap extends Component {
         }
         response.json().then(worldData => {
           this.setState({
-            worldData: feature(worldData, worldData.objects.quadrillage).features,
+            worldData: feature(worldData, worldData.objects.sqrc_1000_trees).features,
           })
           console.log(this.state.worldData)
         })
@@ -150,12 +141,10 @@ class QuadrillageMap extends Component {
               <path
                 key={ `path-${ i }` }
                 d={ geoPath().projection(this.projection())(d) }
-                stroke="red"
+                stroke="white"
                 stroke-width='0.5'
-                fill={ `rgba(38,50,56,${1 / this.state.worldData.length * i})` }
+                fill={ `rgba(255,0,0,${0.05 + this.state.worldData[i].properties.tree_count / 50000})` }
                 onClick={ () => this.handleCountryClick(i) }
-                onMouseEnter={() => this.handleEnterCountry(i)}
-                onMouseLeave={() => this.handleLeaveCountry(i)}
               />
             ))
           }
