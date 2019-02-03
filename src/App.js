@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Map from './map.js';
+import QuadrillageMap from './quadrillage_map.js'
 
 class App extends Component {
   render() {
@@ -12,6 +13,9 @@ class App extends Component {
               </div>
               <div>
                   <Map />
+              </div>
+              <div>
+                <QuadrillageMap />
               </div>
           </div>
       );

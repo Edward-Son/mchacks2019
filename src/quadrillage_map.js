@@ -99,7 +99,7 @@ import React, { Component } from "react"
 import { geoMercator, geoPath } from "d3-geo"
 import { feature } from "topojson-client"
 
-class Map extends Component {
+class QuadrillageMap extends Component {
     constructor() {
       super()
       this.state = {
@@ -125,7 +125,7 @@ class Map extends Component {
         }
         response.json().then(worldData => {
           this.setState({
-            worldData: feature(worldData, worldData.objects.finalterre).features,
+            worldData: feature(worldData, worldData.objects.quadrillage).features,
           })
           console.log(this.state.worldData)
         })
@@ -141,7 +141,7 @@ class Map extends Component {
                 key={ `path-${ i }` }
                 d={ geoPath().projection(this.projection())(d) }
                 stroke="red"
-                stroke-width='2'
+                stroke-width='0.5'
                 fill={ `rgba(38,50,56,${1 / this.state.worldData.length * i})` }
                 onClick={ () => this.handleCountryClick(i) }
               />
@@ -153,6 +153,6 @@ class Map extends Component {
   }
 }
 
-export default Map
+export default QuadrillageMap
 
 
